@@ -34,9 +34,27 @@ TEST_CASES = [
         ),
         [[1, 3], [2]],
     ),
+    (
+        dedent(
+            """\
+            6 7
+            1 2
+            1 3
+            1 7
+            2 4
+            2 5
+            3 4
+            4 6
+            5 6
+            5 7
+            """
+        ),
+        [[1, 4, 5], [2, 3, 6, 7]],
+    )
 ]
 
 
 @pytest.mark.parametrize("input,valid_outputs", TEST_CASES)
 def test_solver(input, valid_outputs: List[List[int]]):
-    assert sorted(solve(input)) in valid_outputs
+    output = solve(input)
+    assert output == valid_outputs
